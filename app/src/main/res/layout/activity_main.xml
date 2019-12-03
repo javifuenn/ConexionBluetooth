@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <!--Informa sobre si el Bluetooth está disponible o no -->
+    <TextView
+        android:id="@+id/statusBluetoothTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="#000" />
+    <!-- Icono Bluetooth ON/OFF -->
+    <ImageView
+        android:id="@+id/BluetoothIv"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+    <!-- Botón ON -->
+    <Button
+        android:id="@+id/BotOn"
+        android:minWidth="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activar"
+        style="@style/Base.Widget.AppCompat.Button.Colored"/>
+    <!-- Botón OFF -->
+    <Button
+        android:id="@+id/BotOff"
+        android:minWidth="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Desactivar"
+        style="@style/Base.Widget.AppCompat.Button.Colored"/>
+    <!-- Boton HACER DESCUBRIBLE -->
+    <Button
+        android:id="@+id/BotDesc"
+        android:minWidth="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hacer detectable"
+        style="@style/Base.Widget.AppCompat.Button.Colored"/>
+    <!-- Boton DISPOSITIVOS EMPAREJADOS -->
+    <Button
+        android:id="@+id/BotEmp"
+        android:minWidth="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Emparejados"
+        style="@style/Base.Widget.AppCompat.Button.Colored"/>
+    <!-- Lista de DISPOSITIVOS EMPAREJADOS -->
+    <TextView
+        android:id="@+id/EmpTv"
+        android:minWidth="200dp"
+        android:text=""
+        android:textColor="#000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
