@@ -23,8 +23,13 @@ public class MainActivity extends AppCompatActivity {
     TextView mEstadoBlueTv, mEmparejadoTv;
     ImageView mBluetIv;
     Button mBotOn, mBotOff,mBotDescubrir, mBotEmparejar, mBotEmp;
-
     BluetoothAdapter mBlueAdapter;
+
+    /**
+     * 4 botones, 4 acciones
+     * @author javifuenn
+     */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +53,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             mEstadoBlueTv.setText("Bluetooth está disponible.");
         }
+
         // Establecer una imagen en función del estado del Bluetooth (on/off)
         if (mBlueAdapter.isEnabled()) {
-            mBluetIv.setImageResource(R.drawable.ic_action_on);
+            mBluetIv.setImageResource(R.drawable.bt_on);
         } else {
-            mBluetIv.setImageResource(R.drawable.ic_action_off);
+            mBluetIv.setImageResource(R.drawable.bt_off);
         }
+
         // Cuando se pulsa el boton ON
         mBotOn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,44 +68,50 @@ public class MainActivity extends AppCompatActivity {
                 if (!mBlueAdapter.isEnabled()) {
                     showToast("Activando Bluetooth...");
                     //intent on Bluetooth
-                    Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE;
+                    Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                     startActivityForResult(intent, REQUEST_ENABLE_BT);
                 } else {
                     showToast("El Bluetooth ya está activado");
                 }
-            }
+            };
         });
-        // Cuando se pulsa el boton DETECTABLE
-        mBotDescubrir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!mBlueAdapter.isEnabled()) {
-                    showToast("Dispositivo detectable...");
-                    Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-                    startActivityForResult(intent, REQUEST_DISCOVER_BT);
-                }
-            }
-        });
+
         // Cuando se pulsa el boton OFF
         mBotOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!mBlueAdapter.isEnabled()) {
-                    mBlueAdapter.disable();
+                if (mBlueAdapter.isEnabled())  { //En caso de estar encendido lo desactiva
                     showToast("Desactivando el Bluetooth...");
-                    mBluetIv.setImageResource(R.drawable.ic_action_off);
+                    mBlueAdapter.disable();
+                    mBluetIv.setImageResource(R.drawable.bt_off);
                 } else {
                     showToast("El Bluetooth ya está desactivado");
                 }
             }
         });
+
+        // Cuando se pulsa el boton DETECTABLE
+        mBotDescubrir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!mBlueAdapter.isDiscovering()) { //En caso de no estar encendido, lo activa
+                    showToast("Dispositivo detectable...");
+                    Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+                    startActivityForResult(intent, REQUEST_DISCOVER_BT);
+                } else {
+                    showToast("No se puede usar esta característica");
+                }
+
+            }
+        });
+
+
         // Cuando se pulsa el boton DISPOSITIVOS EMPAREJADOS
         mBotEmp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!mBlueAdapter.isEnabled()) {
+                if (mBlueAdapter.isEnabled()) { //En caso de estar encendido...
                     mEmparejadoTv.setText("Dispositivos emparejados");
-                    showToast("Desactivando el Bluetooth...");
                     Set<BluetoothDevice> devices = mBlueAdapter.getBondedDevices();
                     for(BluetoothDevice device : devices) {
                         mEmparejadoTv.append("\nDevice: " + device.getName() + "," + device);
@@ -106,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     //El bluetooth está desactivado, así que no se puede mostrar la información requerida
-                    showToast("Turn on Bluetooth to get paired devices");
+                    showToast("Activa el Bluetooth para poder ver los dispositivos");
                 }
             }
         });
@@ -118,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             case REQUEST_ENABLE_BT:
                 if (resultCode == RESULT_OK) {
                     //El Bluetooth está activado
-                    mBluetIv.setImageResource(R.drawable.ic_action_on);
+                    mBluetIv.setImageResource(R.drawable.bt_on);
                     showToast("Bluetooth activado");
                 } else {
                     // El usuario no activa el bluetooth
