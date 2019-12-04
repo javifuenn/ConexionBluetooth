@@ -1,5 +1,6 @@
 # ConexionBluetooth
 Conexion Bluetooth android, proyecto en Android Studio orientado a la conexión con sensores.
+Archivo principal -> ConexionBluetooth/app/src/main/java/com/example/conexionbluetooth/
 
 - El uso del paquete BluetoothAdapter permite hacer las siguientes operaciones recogidas en este repositorio:
 
