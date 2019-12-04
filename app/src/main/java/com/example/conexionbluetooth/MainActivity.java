@@ -27,7 +27,12 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 4 botones, 4 acciones
-     * @author javifuenn
+     * - Saber si el Bluetooth está disponible o no en el dispositivo.
+     * - Encender y apagar el Bluetooth.
+     * - Hacer el Bluetooth del dispositivo detectable.
+     * - Mostrar los dispositivos emparejados y/o enlazados.
+     *
+     * @author Javier Fuente <javifuenn@gmail.com>
      */
 
 
@@ -114,10 +119,16 @@ public class MainActivity extends AppCompatActivity {
                     mEmparejadoTv.setText("Dispositivos emparejados");
                     Set<BluetoothDevice> devices = mBlueAdapter.getBondedDevices();
                     for(BluetoothDevice device : devices) {
-                        mEmparejadoTv.append("\nDevice: " + device.getName() + "," + device);
+                        switch (device.getName()) {
+                            case ("Airpods de Javi"):
+                            case ("Tensiometro"):
+                                mEmparejadoTv.append("\nDispositivo: " + device.getName() + "," + device);
+                                break;
+                            default:
+                                break;
+                        }
                     }
-                }
-                else {
+                } else {
                     //El bluetooth está desactivado, así que no se puede mostrar la información requerida
                     showToast("Activa el Bluetooth para poder ver los dispositivos");
                 }
