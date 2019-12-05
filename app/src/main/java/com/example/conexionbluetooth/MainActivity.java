@@ -156,6 +156,5 @@ public class MainActivity extends AppCompatActivity {
     // Toast message (Mensaje que aparece y desaparece abajo en negro)
     private void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-
     }
 }

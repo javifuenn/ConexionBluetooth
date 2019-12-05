@@ -9,6 +9,7 @@
     android:gravity="center_horizontal">
 
     <!--Informa sobre si el Bluetooth está disponible o no -->
+
     <TextView
         android:id="@+id/statusBluetoothTv"
         android:layout_width="match_parent"
@@ -57,9 +58,25 @@
     <!-- Lista de DISPOSITIVOS EMPAREJADOS -->
     <TextView
         android:id="@+id/EmpTv"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:minWidth="200dp"
         android:text=""
-        android:textColor="#000"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textColor="#000" />
+
+    <Button
+        android:id="@+id/botDesc"
+        style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:layout_width="266dp"
+        android:layout_height="wrap_content"
+        android:minWidth="200dp"
+        android:text="Descubrir" />
+
+    <Button
+        android:id="@+id/botConectar"
+        style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:layout_width="266dp"
+        android:layout_height="wrap_content"
+        android:minWidth="200dp"
+        android:text="Conectar" />
 </LinearLayout>
