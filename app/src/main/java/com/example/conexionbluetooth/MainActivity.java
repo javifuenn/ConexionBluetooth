@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         if (mBlueAdapter == null) {
             mEstadoBlueTv.setText("Bluetooth no disponible.");
         } else {
-            mEstadoBlueTv.setText("Bluetooth está disponible.");
+            mEstadoBlueTv.setText("El Bluetooth está disponible.");
         }
 
         // Establecer una imagen en función del estado del Bluetooth (on/off)
