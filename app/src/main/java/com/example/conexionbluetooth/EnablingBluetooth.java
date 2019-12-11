@@ -1,6 +1,8 @@
 package com.example.conexionbluetooth;
 
 import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +18,7 @@ public class EnablingBluetooth extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.enabling_bluetooth);
         Button btnONOFF = (Button) findViewById(R.id.btnONOFF);
 
         //Inicializo el adaptador
